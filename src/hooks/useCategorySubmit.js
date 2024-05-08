@@ -44,23 +44,24 @@ const useCategorySubmit = (id, data) => {
       //   createdAt: new Date().toISOString(),
       //   updatedAt: new Date().toISOString(),
       // };
-      const generateCustomId = () => {
-        const timestamp = Date.now().toString();
-        const randomPart = Math.random().toString(36).substr(2, 9);
-        return timestamp + randomPart;
-      };
+      // const generateCustomId = () => {
+      //   const timestamp = Date.now().toString();
+      //   const randomPart = Math.random().toString(36).substr(2, 9);
+      //   return timestamp + randomPart;
+      // };
       // justt temporary data is heree 
+      // const childrenObjects = children.map((childName, index) => ({
+      //   _id: index,
+      //   name: childName
+      // }));
       const categoryData = {
-        _id: generateCustomId(), // Use a function to generate a unique ID or provide a specific ID value
-        children: [], // Assuming no children by default; modify as needed
-        parent: name, // Match frontend `checked` to backend `parent`
-        type: description, // Replace with the correct type value
-        icon: imageUrl || 'default_icon_url', // Replace with a valid default icon URL
-        status: published ? 'Show' : 'Hide', // Match frontend `published` to backend `status`
+        // _id: generateCustomId(),
+        children: children,
+        parent: selectCategoryName,
+        type: description,
+        icon: imageUrl || 'default_icon_url',
+        status: published ? 'Show' : 'Hide',
       };
-
-
-      // console.log('category submit', categoryData);
 
       if (id) {
         const res = await CategoryServices.updateCategory(id, categoryData);

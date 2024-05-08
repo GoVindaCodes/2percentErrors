@@ -21,7 +21,7 @@ const AttributeListTable = ({
   handleSelectInlineImage,
 }) => {
   const { t } = useTranslation();
-
+  console.log("hi", variants)
   return (
     <>
       <TableBody>

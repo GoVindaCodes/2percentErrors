@@ -147,8 +147,6 @@ const CurrencyServices = {
   },
 
   updateEnabledStatus: async (id, body) => {
-    console.log("id : ", id)
-    console.log("id : ", body)
     return requests.put(`/api/currency/status/enabled/${id}`, body);
   },
 

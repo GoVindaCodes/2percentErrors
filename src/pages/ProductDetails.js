@@ -24,6 +24,10 @@ import useToggleDrawer from "hooks/useToggleDrawer";
 import ProductServices from "services/ProductServices";
 import { showingTranslateValue } from "utils/translate";
 import SettingServices from "services/SettingServices";
+import { FiChevronRight } from "react-icons/fi";
+// import { Link } from "@react-pdf/renderer";
+import { Link } from "react-router-dom";
+
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -63,7 +67,30 @@ const ProductDetails = () => {
         <ProductDrawer id={id} />
       </MainDrawer>
 
+
+
+
       <PageTitle>{t("ProductDetails")}</PageTitle>
+      <div className="flex items-center pb-4">
+        <ol className="flex items-center w-full overflow-hidden font-serif">
+          <li className="text-sm pr-1 transition duration-200 ease-in cursor-pointer hover:text-emerald-500 font-semibold">
+            <Link className="text-blue-700" to={`/products`}>
+              Products
+            </Link>
+          </li>
+
+          <span className="flex items-center font-serif">
+            <li className="text-sm mt-[1px]">
+              {" "}
+              <FiChevronRight />{" "}
+            </li>
+
+            <li className="text-sm pl-1 font-semibold ">
+              {!loading && showingTranslateValue(data?.title, lang)}
+            </li>
+          </span>
+        </ol>
+      </div>
       {loading ? (
         <Loading loading={loading} />
       ) : (

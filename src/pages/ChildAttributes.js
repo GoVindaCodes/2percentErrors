@@ -31,6 +31,7 @@ import { showingTranslateValue } from "../utils/translate";
 const ChildAttributes = () => {
   let { id } = useParams();
 
+
   const { handleDeleteMany, allId, serviceId, handleUpdateMany } =
     useToggleDrawer();
   const { toggleDrawer, lang } = useContext(SidebarContext);
@@ -45,7 +46,8 @@ const ChildAttributes = () => {
       option1: "Radio",
     })
   );
-
+  // console.log("Initial attributes:", attributes);
+  // console.log("Initial id:", id);
   const {
     totalResults,
     resultsPerPage,
@@ -68,17 +70,18 @@ const ChildAttributes = () => {
   };
 
   // attributes filtering except this id
-  // useEffect(() => {
-  //   const data = attributes?.filter((value) => value._id !== id);
-  //   setAttributeData(data);
-  // }, [attributes, id]);
-
   useEffect(() => {
-    if (Array.isArray(attributes)) {
-      const data = attributes.filter((value) => value._id !== id);
-      setAttributeData(data);
-    }
+    const data = attributes?.filter((value) => value._id !== id);
+    setAttributeData(data);
   }, [attributes, id]);
+
+  // for now removed useEffects To SOlve the issues of not showing ATtribute Values
+  // useEffect(() => {
+  //   if (Array.isArray(attributes)) {
+  //     const data = attributes.filter((value) => value._id !== id);
+  //     setAttributeData(data);
+  //   }
+  // }, [attributes, id]);
 
 
   return (
@@ -117,7 +120,7 @@ const ChildAttributes = () => {
             </li>
 
             <li className="text-sm pl-1 font-semibold ">
-              {!loading && showingTranslateValue(data?.title, lang)}
+              {!loading && showingTranslateValue(data?.title?.en, lang)}
             </li>
           </span>
         </ol>
@@ -176,7 +179,7 @@ const ChildAttributes = () => {
                 </TableCell>
                 <TableCell>Id</TableCell>
                 <TableCell>Name</TableCell>
-                <TableCell>Type</TableCell>
+                <TableCell >Type</TableCell>
                 <TableCell className="text-center">Status</TableCell>
                 <TableCell className="text-right">Actions</TableCell>
               </tr>
